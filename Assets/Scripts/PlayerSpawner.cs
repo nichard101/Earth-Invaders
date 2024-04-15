@@ -8,9 +8,9 @@ public class PlayerSpawner : MonoBehaviour
     
     public GameObject playerPrefab;
     GameObject player;
-    public float minY = -0.7f;
+    public float minY;
 
-    public float vSpeed = 1.5f;
+    public float vSpeed;
 
     float currentY;
     public bool levelOver = false;
