@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 5968724276781068372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.604, y: 0.575, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 59.999996, y: 59.999996, z: 49.999996}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2735c0c1c8b4e77a2fcbad3e90da9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -2
+  speed: -100
   enemyProjectile: 1
+  isPickup: 0
   damage: 1
 --- !u!95 &7914357956551349699
 Animator:

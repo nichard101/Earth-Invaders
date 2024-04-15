@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2735c0c1c8b4e77a2fcbad3e90da9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -1
+  speed: -50
   enemyProjectile: 0
   isPickup: 1
   damage: 0
