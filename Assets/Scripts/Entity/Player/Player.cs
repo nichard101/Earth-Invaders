@@ -6,12 +6,14 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
 	// Private variables (not visible in the Inspector panel)
 	// The speed of player movement
 	public float speed = 5;
+	public float vSpeed = 5;
 	
 	bool atLeftWall = false;
 	bool atRightWall = false;
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour {
 
 	public Transform powerShotPrefab;
 	public Transform originalShotPrefab;
+
+	public bool levelOver = false;
 	int attackNum = 0;
 	Color color;
 	Attack attack;
@@ -100,6 +104,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		currentTime = System.DateTime.Now;
+		Vector2 playerPosition = transform.position;
 		if(player){
 			if(shield){
 				if(currentTime >= shieldTime){
@@ -136,6 +141,17 @@ public class Player : MonoBehaviour {
 					attackNum++;
 				}
 			}
+		} else {
+			if(playerPosition.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Camera.main.pixelHeight*2.5f)).y){
+				//currentLevel++;
+				SceneManager.LoadScene("Level Transition");
+			} else if(playerPosition.y < -75 || (levelOver)){
+				player = false;
+				MoveUp();
+			} else {
+				player = true;
+			}
+			
 		}
 	}
 
@@ -213,6 +229,12 @@ public class Player : MonoBehaviour {
 		// restore origin color
 		sr.color = originColor;
 	}
+
+	void MoveUp(){
+        float move = Time.deltaTime * vSpeed;
+        transform.Translate(new Vector3(0,move,0));
+        //currentY += move;
+    }
 
 	public void ToggleInvisible(){
 		rend.enabled ^= false;

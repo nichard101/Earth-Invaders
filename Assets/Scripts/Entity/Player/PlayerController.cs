@@ -3,26 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerSpawner : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    
-    public GameObject playerPrefab;
-    GameObject player;
-    public float minY;
-
+    public GameObject player;
+    public float minY = -75;
     public float vSpeed;
-
-    float currentY;
     public bool levelOver = false;
-
     public static int currentLevel = 1;
-
     bool killed = false;
-
     System.DateTime killTime;
 
     void Start()
-    {         
+    {
         Spawn();
     }
     void Update()
@@ -31,27 +23,23 @@ public class PlayerSpawner : MonoBehaviour
             if(System.DateTime.Now >= killTime.AddSeconds(2)){
                 SceneManager.LoadScene("GameOver");
             }
-        } else if(levelOver || currentY < minY){
+        } else if(player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Camera.main.pixelHeight*2.5f)).y){
+            SceneManager.LoadScene("LevelTransition");
+        } else if(levelOver || player.transform.position.y < minY){
             player.GetComponent<Player>().player = false;
             MoveUp();
-        } else if(currentY >= minY && !player.GetComponent<Player>().player){
+        } else {
             player.GetComponent<Player>().player = true;
-        }
-        
-        if(currentY >= 2f){
-            setY(3f);
-            currentLevel ++;
-            SceneManager.LoadScene("LevelTransition");
         }
     }
 
     void Spawn(){
-        player = Instantiate(playerPrefab);
+        player = GameObject.Find("Player");
 
         player.transform.parent = transform;
 
-        player.transform.localPosition = new Vector3(0, 0, 0);
-        currentY = -2;
+        //player.transform.localPosition = new Vector3(0, 0, 0);
+        //currentY = -2;
     }
 
     public void Killed(){
@@ -63,7 +51,6 @@ public class PlayerSpawner : MonoBehaviour
     void MoveUp(){
         float move = Time.deltaTime * vSpeed;
         player.transform.Translate(new Vector3(0,move,0));
-        currentY += move;
     }
 
     public void setY(float y){

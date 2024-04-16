@@ -36,23 +36,26 @@ public class EnemyWave : MonoBehaviour
             lines = 2;
         }
 
-        if(alienNum==0){
-            alienPrefab = alienPrefab1;
-        } else if(alienNum == 1){
-            alienPrefab = alienPrefab2;
-        } else {
-            alienPrefab = alienPrefab3;
-        }
+        // if(alienNum==0){
+        //     alienPrefab = alienPrefab1;
+        // } else if(alienNum == 1){
+        //     alienPrefab = alienPrefab2;
+        // } else {
+        //     alienPrefab = alienPrefab3;
+        // }
 
         int minEnemies;
         int maxEnemies;
         if(level==1){
+            alienPrefab = alienPrefab1;
             minEnemies = 3;
             maxEnemies = 3;
         } else if(level==2){
+            alienPrefab = alienPrefab2;
             minEnemies=3;
             maxEnemies=2;
         } else {
+            alienPrefab = alienPrefab3;
             minEnemies = 2;
             maxEnemies = 2;
         }
