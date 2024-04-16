@@ -5,12 +5,19 @@ using UnityEngine;
 public class EnemyWave : MonoBehaviour
 {
     
-    public Transform alienPrefab;
+    public Transform alienPrefab1;
+    public Transform alienPrefab2;
+    public Transform alienPrefab3;
+
+    Transform alienPrefab;
     
     public float speed;
-    public float gapBetweenAliens = 0.25f;
+    public float gapHorizontal = 0.25f;
+    public float gapVertical = 0.25f;
 
-    public int level = 1;
+    public int alienNum = 0;
+
+    public int level;
 
     int direction =-1;
 
@@ -28,6 +35,15 @@ public class EnemyWave : MonoBehaviour
         if(level==3){
             lines = 2;
         }
+
+        if(alienNum==0){
+            alienPrefab = alienPrefab1;
+        } else if(alienNum == 1){
+            alienPrefab = alienPrefab2;
+        } else {
+            alienPrefab = alienPrefab3;
+        }
+
         int minEnemies;
         int maxEnemies;
         if(level==1){
@@ -42,13 +58,13 @@ public class EnemyWave : MonoBehaviour
         }
         for(int y = 0; y < 3; y++){ // repeat 3 times
             bool isEven = (y % 2 == 0);
-            float offsetX = (isEven ? 0.0f : 0.5f) * gapBetweenAliens;
+            float offsetX = (isEven ? 0.0f : 0.5f) * gapHorizontal;
             for(int x = -minEnemies; x < maxEnemies; ++x) {
                 Transform alien = Instantiate(alienPrefab); // creates an alien
                 alien.parent = transform; //  
                 alien.localPosition = new Vector3(
-                    (x*gapBetweenAliens)+ offsetX,
-                    0 + (y * gapBetweenAliens),
+                    (x*gapHorizontal)+ offsetX,
+                    0 + (y * gapVertical),
                     0
                 );
             }
@@ -81,7 +97,7 @@ public class EnemyWave : MonoBehaviour
          // Changing the direction
          // push the wave down a bit as well
          direction = 1;   
-         transform.Translate(new Vector3(0,-gapBetweenAliens/2,0));
+         transform.Translate(new Vector3(0,-gapVertical/2,0));
       }
    }
 

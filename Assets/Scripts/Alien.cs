@@ -38,7 +38,7 @@ public class Alien : MonoBehaviour {
             StartCoroutine(ColorChangeSequence(rend, Color.red, 0.5f, 0));
             Instantiate(explosionPrefab, pos, Quaternion.identity);
             if(other.tag == "PowerShot"){
-               GameObject explosion = Instantiate(explosionPrefabBig, pos, Quaternion.identity);
+               Instantiate(explosionPrefabBig, pos, Quaternion.identity);
             }
             if(health <= 0){
                GameMaster.EnemyHit(this);
