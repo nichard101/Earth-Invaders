@@ -45,15 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c009ad984d541d592456a2ca9819dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldChance: 0
+  shieldChance: 0.3
   healthChance: 0.5
-  rapidfireChance: 0
-  powerfireChance: 1
+  rapidfireChance: 0.1
+  powerfireChance: 0.01
   shield: {fileID: 5860009051110835281, guid: e1d2b8c322b0b465c9eaae161c05e610, type: 3}
   health: {fileID: 6586816818311694298, guid: 01cf443e76bf14242bb4ef067c0a2b6a, type: 3}
   rapidFire: {fileID: 6696907921473077609, guid: fc3a99baa6c8b4682b438c81df3a0bb8, type: 3}
   powerFire: {fileID: 7146858844557241422, guid: 6def36edf53024d2e92702075f58ce55, type: 3}
-  dropChance: 0.8
+  dropChance: 0.2
 --- !u!61 &4372154843172620746
 BoxCollider2D:
   m_ObjectHideFlags: 0

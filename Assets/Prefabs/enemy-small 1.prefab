@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1999864062725446753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 50}
+  m_LocalScale: {x: 70, y: 70, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 1867149033983372933, guid: eb9e9fdbc311540d09291e55e26c686a, type: 3}
-  autoShootProbability: 0.007
+  autoShootProbability: 0.004
   fireCooldownTime: 1
   willShoot: 1
   shotSound: {fileID: 8300000, guid: 7c90b5d69a46c481ab5e9d83f5da853f, type: 3}
