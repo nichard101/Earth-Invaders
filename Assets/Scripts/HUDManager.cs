@@ -20,7 +20,11 @@ public class HUDManager : MonoBehaviour {
    void Update () {
 
       hudScore.text = "Score: " + GameMaster.playerScore;
-      hudHealth.text = "Health";
+      int healthNum = GameMaster.playerHealth;
+      if(healthNum < 0){
+         healthNum = 0;
+      }
+      hudHealth.text = "Health: " + healthNum;
 
       if(Input.GetKeyDown(KeyCode.Escape)) {
          // If user presses ESC, show the pause menu in pause mode
