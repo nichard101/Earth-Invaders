@@ -14,13 +14,7 @@ public class LevelTransition : MonoBehaviour
     {   
         if(Input.GetKeyDown(KeyCode.Return)) {
             GameMaster.playerHealth=3;
-            if(PlayerSpawner.currentLevel == 1){
-                SceneManager.LoadScene("Level1");
-            } else if(PlayerSpawner.currentLevel == 2){
-                SceneManager.LoadScene("Level2");
-            } else if(PlayerSpawner.currentLevel == 3){
-                SceneManager.LoadScene("Level3");    
-            }        
+            SceneManager.LoadScene("Level");
       }
     }
     void OnGUI() {
@@ -29,6 +23,6 @@ public class LevelTransition : MonoBehaviour
       GUI.skin.label.fontSize = 40;
       GUI.skin.label.fontStyle = FontStyle.Bold;
 
-      GUI.Label(new Rect(0,0,Screen.width,Screen.height), "LEVEL " + PlayerSpawner.currentLevel);
+      GUI.Label(new Rect(0,0,Screen.width,Screen.height), "LEVEL " + PlayerController.currentLevel);
    }
 }

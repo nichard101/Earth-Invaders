@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour {
       if(Input.GetKeyDown(KeyCode.Return)) {
          GameMaster.playerHealth = 3;
          GameMaster.playerScore = 0;
-         PlayerSpawner.currentLevel = startLevel;
+         PlayerController.currentLevel = startLevel;
          
          SceneManager.LoadScene("LevelTransition");            
       }

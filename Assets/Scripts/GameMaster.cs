@@ -11,7 +11,8 @@ public class GameMaster : MonoBehaviour
 
     public static int waveNum = 0;
 
-    static PlayerSpawner spawner;
+    static Player player;
+    static PlayerController controller;
 
     void Start() {
         
@@ -27,7 +28,7 @@ public class GameMaster : MonoBehaviour
         if(aliensLeft.Length == 1) {
             waveNum++;
             if(waveNum==3){
-                spawner.levelOver = true;
+                player.levelOver = true;
                 waveNum=0;
             } else {
                 EnemyWave wave = GameObject.Find("EnemyWave").GetComponent<EnemyWave>();
@@ -37,10 +38,10 @@ public class GameMaster : MonoBehaviour
     }
 
     public static void PlayerHit(int damage) {
-        spawner = GameObject.Find("PlayerSpawner").GetComponent<PlayerSpawner>();
+        controller = GameObject.Find("PlayerController").GetComponent<PlayerController>();
         playerHealth-= damage;
         if(playerHealth<=0){
-            spawner.Killed();
+            controller.Killed();
         }
     }
 }
