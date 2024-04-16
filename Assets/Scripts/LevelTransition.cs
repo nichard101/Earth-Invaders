@@ -23,6 +23,6 @@ public class LevelTransition : MonoBehaviour
       GUI.skin.label.fontSize = 40;
       GUI.skin.label.fontStyle = FontStyle.Bold;
 
-      GUI.Label(new Rect(0,0,Screen.width,Screen.height), "LEVEL " + PlayerController.currentLevel);
+      GUI.Label(new Rect(0,0,Screen.width,Screen.height), "LEVEL " + GameMaster.currentLevel);
    }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
    
-   public int startLevel = 3;
+   public int startLevel = 1;
    System.DateTime currentTime;
    void Start(){
         currentTime = System.DateTime.Now;
@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour {
       if(Input.GetKeyDown(KeyCode.Return)) {
          GameMaster.playerHealth = 3;
          GameMaster.playerScore = 0;
-         PlayerController.currentLevel = startLevel;
+         GameMaster.currentLevel = startLevel;
          
          SceneManager.LoadScene("LevelTransition");            
       }

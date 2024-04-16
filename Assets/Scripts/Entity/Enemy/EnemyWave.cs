@@ -8,23 +8,20 @@ public class EnemyWave : MonoBehaviour
     public Transform alienPrefab1;
     public Transform alienPrefab2;
     public Transform alienPrefab3;
-
     Transform alienPrefab;
-    
     public float speed;
     public float gapHorizontal = 0.25f;
     public float gapVertical = 0.25f;
-
-    public int alienNum = 0;
-
-    public int level;
-
+    int level;
     int direction =-1;
-
     Vector3 OGPos;
+
+    Vector3 alienSize;
 
     void Start()
     {
+        
+        level = GameMaster.currentLevel;
         OGPos = transform.localPosition;
         SpawnWave();
     }
@@ -35,14 +32,6 @@ public class EnemyWave : MonoBehaviour
         if(level==3){
             lines = 2;
         }
-
-        // if(alienNum==0){
-        //     alienPrefab = alienPrefab1;
-        // } else if(alienNum == 1){
-        //     alienPrefab = alienPrefab2;
-        // } else {
-        //     alienPrefab = alienPrefab3;
-        // }
 
         int minEnemies;
         int maxEnemies;
@@ -56,18 +45,19 @@ public class EnemyWave : MonoBehaviour
             maxEnemies=2;
         } else {
             alienPrefab = alienPrefab3;
-            minEnemies = 2;
+            minEnemies = 3;
             maxEnemies = 2;
         }
-        for(int y = 0; y < 3; y++){ // repeat 3 times
+        alienSize = alienPrefab.GetComponent<SpriteRenderer>().bounds.size;
+        for(int y = 0; y < lines; y++){ // repeat 3 times
             bool isEven = (y % 2 == 0);
-            float offsetX = (isEven ? 0.0f : 0.5f) * gapHorizontal;
+            float offsetX = (isEven ? 0.0f : 0.5f * gapHorizontal * alienSize.x);
             for(int x = -minEnemies; x < maxEnemies; ++x) {
                 Transform alien = Instantiate(alienPrefab); // creates an alien
                 alien.parent = transform; //  
                 alien.localPosition = new Vector3(
-                    (x*gapHorizontal)+ offsetX,
-                    0 + (y * gapVertical),
+                    (x * alienSize.x * gapHorizontal)+ offsetX,
+                    0 + (y * (alienSize.y / 2) * gapVertical),
                     0
                 );
             }
@@ -100,7 +90,7 @@ public class EnemyWave : MonoBehaviour
          // Changing the direction
          // push the wave down a bit as well
          direction = 1;   
-         transform.Translate(new Vector3(0,-gapVertical/2,0));
+         transform.Translate(new Vector3(0,-(gapVertical/2) * alienSize.y/2,0));
       }
    }
 

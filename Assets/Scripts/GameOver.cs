@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour {
 
     void Update() {
         if(Input.GetKeyDown(KeyCode.Return)) {    
-            PlayerController.currentLevel = 1;
+            GameMaster.currentLevel = 1;
             SceneManager.LoadScene("MainMenu");
         }
     }

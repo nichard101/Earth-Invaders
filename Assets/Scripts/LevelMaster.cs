@@ -7,6 +7,7 @@ public class LevelMaster : MonoBehaviour {
    // Variables referencing two edge colliders
    public EdgeCollider2D leftWall;
    public EdgeCollider2D rightWall;
+   public BackgroundMaster backgroundMaster;
 
 
    // Use this for initialization
@@ -50,5 +51,9 @@ public class LevelMaster : MonoBehaviour {
       // Position the left wall edge collider
       // at the left edge of the camera
       rightWall.points = edgePointsRight;
+
+
+      int level = GameMaster.currentLevel;
+      backgroundMaster.SetLevelBackground(level);
    }
 }

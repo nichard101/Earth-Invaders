@@ -9,12 +9,12 @@ public class PlayerController : MonoBehaviour
     public float minY = -75;
     public float vSpeed;
     public bool levelOver = false;
-    public static int currentLevel = 1;
     bool killed = false;
     System.DateTime killTime;
 
     void Start()
     {
+        
         Spawn();
     }
     void Update()
@@ -23,9 +23,10 @@ public class PlayerController : MonoBehaviour
             if(System.DateTime.Now >= killTime.AddSeconds(2)){
                 SceneManager.LoadScene("GameOver");
             }
-        } else if(player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Camera.main.pixelHeight*2.5f)).y){
+        } else if(player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Camera.main.pixelHeight*1.2f)).y){
+            GameMaster.currentLevel += 1;
             SceneManager.LoadScene("LevelTransition");
-        } else if(levelOver || player.transform.position.y < minY){
+        } else if(player.GetComponent<Player>().levelOver || player.transform.position.y < minY){
             player.GetComponent<Player>().player = false;
             MoveUp();
         } else {
@@ -34,8 +35,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Spawn(){
-        player = GameObject.Find("Player");
-
+        //player = GameObject.Find("Player");
         player.transform.parent = transform;
 
         //player.transform.localPosition = new Vector3(0, 0, 0);
@@ -50,6 +50,9 @@ public class PlayerController : MonoBehaviour
 
     void MoveUp(){
         float move = Time.deltaTime * vSpeed;
+        if(player.GetComponent<Player>().levelOver){
+            move *= 2f;
+        }
         player.transform.Translate(new Vector3(0,move,0));
     }
 

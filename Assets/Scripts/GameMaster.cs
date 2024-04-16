@@ -8,10 +8,10 @@ public class GameMaster : MonoBehaviour
     public static int playerHealth = 3;
 
     public static int playerScore = 0;
+    public static int currentLevel = 1;
 
     public static int waveNum = 0;
 
-    static Player player;
     static PlayerController controller;
 
     void Start() {
@@ -28,7 +28,8 @@ public class GameMaster : MonoBehaviour
         if(aliensLeft.Length == 1) {
             waveNum++;
             if(waveNum==3){
-                player.levelOver = true;
+                Player pl = GameObject.Find("Player").GetComponent<Player>();
+                pl.levelOver = true;
                 waveNum=0;
             } else {
                 EnemyWave wave = GameObject.Find("EnemyWave").GetComponent<EnemyWave>();

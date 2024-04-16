@@ -16,4 +16,22 @@ public class BackgroundMaster : MonoBehaviour
     {
         
     }
+
+    public void SetLevelBackground(int l){
+        BG1.SetActive(false);
+        BG2.SetActive(false);
+        BG3.SetActive(false);
+
+        switch(l){
+            case 1:
+                BG1.SetActive(true);
+                break;
+            case 2:
+                BG2.SetActive(true);
+                break;
+            case 3:
+                BG3.SetActive(true);
+                break;
+        }
+    }
 }

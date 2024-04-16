@@ -105,6 +105,11 @@ public class Player : MonoBehaviour {
 	void Update () {
 		currentTime = System.DateTime.Now;
 		Vector2 playerPosition = transform.position;
+
+		if(Input.GetKeyDown("escape")){
+            Application.Quit();
+        }
+
 		if(player){
 			if(shield){
 				if(currentTime >= shieldTime){
@@ -141,17 +146,6 @@ public class Player : MonoBehaviour {
 					attackNum++;
 				}
 			}
-		} else {
-			if(playerPosition.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Camera.main.pixelHeight*2.5f)).y){
-				//currentLevel++;
-				SceneManager.LoadScene("Level Transition");
-			} else if(playerPosition.y < -75 || (levelOver)){
-				player = false;
-				MoveUp();
-			} else {
-				player = true;
-			}
-			
 		}
 	}
 
