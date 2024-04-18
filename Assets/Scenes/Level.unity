@@ -925,7 +925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1134092673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,14 +1102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HUD: {fileID: 29664071}
-  ContinueButton: {fileID: 1892108641}
-  MenuButton: {fileID: 0}
-  StartScreen: {fileID: 975284159}
-  LevelTitle: {fileID: 1134092672}
   transition: {fileID: 1251448068}
   hudScore: {fileID: 1222360346}
   hudHealth: {fileID: 512541254}
-  fadeSpeed: 0.0005
+  levelText: {fileID: 1134092673}
 --- !u!114 &1251448064
 MonoBehaviour:
   m_ObjectHideFlags: 0
