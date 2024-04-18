@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour {
          GameMaster.playerScore = 0;
          GameMaster.currentLevel = startLevel;
          
-         SceneManager.LoadScene("LevelTransition");            
+         SceneManager.LoadScene("Level");            
       }
    }
 

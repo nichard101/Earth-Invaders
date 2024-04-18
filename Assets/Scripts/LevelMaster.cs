@@ -9,6 +9,9 @@ public class LevelMaster : MonoBehaviour {
    public EdgeCollider2D rightWall;
    public BackgroundMaster backgroundMaster;
 
+   public PlayerController playerController;
+   public HUDManager hudManager;
+
 
    // Use this for initialization
    void Start () {

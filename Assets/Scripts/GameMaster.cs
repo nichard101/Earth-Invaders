@@ -12,7 +12,10 @@ public class GameMaster : MonoBehaviour
 
     public static int waveNum = 0;
 
+    public static Time gameTime;
+
     static PlayerController controller;
+    static bool pause;
 
     void Start() {
         
@@ -44,5 +47,14 @@ public class GameMaster : MonoBehaviour
         if(playerHealth<=0){
             controller.Killed();
         }
+    }
+
+
+    public static void Pause(){
+        Time.timeScale = 0.0f;
+    }
+
+    public static void Unpause(){
+        Time.timeScale = 1.0f;
     }
 }

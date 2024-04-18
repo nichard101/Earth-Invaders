@@ -18,19 +18,21 @@ public class PlayerController : MonoBehaviour
         Spawn();
     }
     void Update()
-    {
-        if(killed){
-            if(System.DateTime.Now >= killTime.AddSeconds(2)){
-                SceneManager.LoadScene("GameOver");
+    {   
+        if(!levelOver){
+            if(killed){
+                if(System.DateTime.Now >= killTime.AddSeconds(2)){
+                    SceneManager.LoadScene("GameOver");
+                }
+            } else if(player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Camera.main.pixelHeight*1.2f)).y){
+                levelOver = true;
+                GameObject.Find("UI").GetComponent<HUDManager>().EndOfLevel();
+            } else if(player.GetComponent<Player>().levelOver || player.transform.position.y < minY){
+                player.GetComponent<Player>().player = false;
+                MoveUp();
+            } else {
+                player.GetComponent<Player>().player = true;
             }
-        } else if(player.transform.position.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Camera.main.pixelHeight*1.2f)).y){
-            GameMaster.currentLevel += 1;
-            SceneManager.LoadScene("LevelTransition");
-        } else if(player.GetComponent<Player>().levelOver || player.transform.position.y < minY){
-            player.GetComponent<Player>().player = false;
-            MoveUp();
-        } else {
-            player.GetComponent<Player>().player = true;
         }
     }
 

@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class HUDManager : MonoBehaviour {
 
-   public GameObject hud;
+   public GameObject HUD;
+   public Animator transition;
    
    public Text hudScore = null;
    public Text hudHealth = null;
+   public Text levelText = null;
    
    // Use this for initialization
    void Start () {
-
+      levelText.text = "LEVEL " + GameMaster.currentLevel;
    }
    
    // Update is called once per frame
@@ -42,4 +44,44 @@ public class HUDManager : MonoBehaviour {
     //   }
         }
    }
+
+   public void Pause(){
+
+   }
+
+   public void Unpause(){
+
+   }
+
+   public void StartOfLevel(){
+      
+   }
+
+   public void EndOfLevel(){
+      FadeToLevel();
+   }
+
+   // "Continue Level" HUD button function - loads next level
+   public void NextLevel(){
+      GameMaster.currentLevel += 1;
+      transition.SetTrigger("FadeExit");
+   }
+
+   public void LoadLevel(){
+      SceneManager.LoadScene("Level");
+   }
+
+   public static void BackToMenu(){
+
+   }
+
+   public void FadeToLevel(){
+      HUD.SetActive(false);
+      transition.SetTrigger("FadeOut");
+   }
+
+   public void OnFadeComplete(){
+      //ContinueButton.SetActive(true);
+   }
+
 }
