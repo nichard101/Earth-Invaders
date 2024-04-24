@@ -68,7 +68,11 @@ public class HUDManager : MonoBehaviour {
    }
 
    public void LoadLevel(){
-      SceneManager.LoadScene("Level");
+      if(GameMaster.currentLevel > 3){
+         SceneManager.LoadScene("GameOver");
+      } else {
+         SceneManager.LoadScene("Level");
+      }
    }
 
    public static void BackToMenu(){

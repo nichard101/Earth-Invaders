@@ -1,45 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
 
     System.DateTime currentTime;
+    public Text score, gameTime;
+
+    float timeElapsed;
 
     void Start(){
-        currentTime = System.DateTime.Now;
+        timeElapsed = Time.time - GameMaster.gameTime;
+        score.text = "Score: " + GameMaster.playerScore;
+        gameTime.text = "Time: " + timeElapsed;
     }
 
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.Return)) {    
-            GameMaster.currentLevel = 1;
-            SceneManager.LoadScene("MainMenu");
-        }
+    public void ReturnToMenu(){
+        SceneManager.LoadScene("MainMenu");
     }
-
-   // Display game over message
-   void OnGUI() {
-      
-      // Show player score in white on the top left of the screen
-      GUI.color = Color.white;   
-      GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-      GUI.skin.label.fontSize = 40;
-      GUI.skin.label.fontStyle = FontStyle.Bold;
-      GUI.Label(new Rect(0,Screen.height/ 4f,Screen.width,70), "Game over");
-
-      string message;
-
-      if(GameMaster.playerHealth <= 0) {
-          message = "You lost :(";
-          GUI.color = Color.red;
-      } else {
-          message = "You won!!!";
-          GUI.color = Color.white;
-      }
-      GUI.Label(new Rect(0,Screen.height/4f + 80f,Screen.width,70), message);
-
-      GUI.color = Color.white;
-      GUI.Label(new Rect(0,Screen.height/ 4f + 240f,Screen.width,70), "Press Enter to continue...");
-   }
 }
