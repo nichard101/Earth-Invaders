@@ -5,28 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
    
-   public int startLevel = 1;
-   System.DateTime currentTime;
    void Start(){
-        currentTime = System.DateTime.Now;
+        
    }
 
-   void Update () {
-      if(Input.GetKeyDown(KeyCode.Return)) {
-         GameMaster.playerHealth = 3;
-         GameMaster.playerScore = 0;
-         GameMaster.currentLevel = startLevel;
-         
-         SceneManager.LoadScene("Level");            
-      }
-   }
-
-
-   void OnGUI() {
-      GUI.color = Color.white;   
-      GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-      GUI.skin.label.fontSize = 40;
-      GUI.skin.label.fontStyle = FontStyle.Bold;
-      GUI.Label(new Rect(0,0,Screen.width,Screen.height), "Press Enter to start");
+   public void StartGame(){
+      GameMaster.ResetGame();
+      SceneManager.LoadScene("Level");
    }
 }
