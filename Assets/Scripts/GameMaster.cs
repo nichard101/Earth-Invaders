@@ -12,7 +12,7 @@ public class GameMaster : MonoBehaviour
 
     public static int waveNum = 0;
 
-    public static Time gameTime;
+    public static float gameTime;
 
     static PlayerController controller;
     static bool pause;
@@ -49,12 +49,11 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-
-    public static void Pause(){
-        Time.timeScale = 0.0f;
-    }
-
-    public static void Unpause(){
-        Time.timeScale = 1.0f;
+    public static void ResetGame(){
+        playerScore = 0;
+        playerHealth = 3;
+        currentLevel = 1;
+        waveNum = 0;
+        gameTime = Time.time;
     }
 }

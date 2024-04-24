@@ -118,12 +118,12 @@ public class Player : MonoBehaviour {
 			}
 			if(rapidFire){
 				if(currentTime >= rapidFireTime){
-					NormalFire();
+					ResetFire();
 				}
 			}
 			if(powerFire){
 				if(attackNum > 1){
-					NormalShot();
+					ResetFire();
 					attackNum=0;
 				}
 			}
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour {
 
 	void RapidFire() {
 		if(powerFire){
-			NormalShot();
+			ResetFire();
 		}
 		rapidFire = true;
 		OGCooldown = attack.fireCooldownTime;
@@ -168,11 +168,25 @@ public class Player : MonoBehaviour {
 		rapidFireTime = currentTime.AddSeconds(3);
 	}
 
-	void NormalFire() {
-		rapidFire = false;
-		attack.fireCooldownTime = OGCooldown;
-		rend.color = color;
+	void PowerShot() {
+		if(rapidFire){
+			ResetFire();
+		}
+		powerFire = true;
+		color = rend.color;
+		rend.color = Color.magenta;
+		originalShotPrefab = attack.shotPrefab;
+		attack.shotPrefab = powerShotPrefab;
 	}
+
+	void ResetFire() {
+		rend.color = color;
+		attack.shotPrefab = originalShotPrefab;
+		attack.fireCooldownTime = OGCooldown;
+		powerFire = false;
+		rapidFire = false;
+	}
+
 	public void TakeDamage(int damage)
 	{
 		if(damage > 0){
@@ -182,23 +196,6 @@ public class Player : MonoBehaviour {
 			GameMaster.PlayerHit(damage);
 			lastHitTime = System.DateTime.Now;
 		}
-	}
-
-	void PowerShot() {
-		if(rapidFire){
-			NormalFire();
-		}
-		color = rend.color;
-		rend.color = Color.magenta;
-		originalShotPrefab = attack.shotPrefab;
-		attack.shotPrefab = powerShotPrefab;
-		powerFire = true;
-	}
-
-	void NormalShot() {
-		rend.color = color;
-		attack.shotPrefab = originalShotPrefab;
-		powerFire = false;
 	}
 
 	IEnumerator ColorChangeSequence(SpriteRenderer sr, Color dmgColor, float duration, float delay)
