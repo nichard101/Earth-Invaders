@@ -8,6 +8,7 @@ public class GameMaster : MonoBehaviour
     public static int playerHealth = 3;
 
     public static int playerScore = 0;
+    public static bool playerDead = false;
     public static int currentLevel = 1;
 
     public static int waveNum = 0;
@@ -52,6 +53,7 @@ public class GameMaster : MonoBehaviour
     public static void ResetGame(){
         playerScore = 0;
         playerHealth = 3;
+        playerDead = false;
         currentLevel = 1;
         waveNum = 0;
         gameTime = Time.time;

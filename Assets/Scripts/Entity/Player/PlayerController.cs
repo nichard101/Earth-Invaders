@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public void Killed(){
         killTime = System.DateTime.Now;
         killed = true;
+        GameMaster.playerDead = true;
         Destroy(player.gameObject);
     }
 
